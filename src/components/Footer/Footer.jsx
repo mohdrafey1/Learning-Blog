@@ -15,7 +15,7 @@ function Footer() {
                             <div>
                                 <p className="text-sm text-gray-600">
                                     &copy; Copyright 2023. All Rights Reserved
-                                    by DevUI.
+                                    by Extra Element.
                                 </p>
                             </div>
                         </div>

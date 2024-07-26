@@ -27,59 +27,59 @@ function Login() {
     };
 
     return (
-        <div className="flex items-center justify-center w-full">
-            <div
-                className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}
-            >
-                <div className="mb-2 flex justify-center">
-                    <span className="inline-block w-full max-w-[100px]">
-                        <Logo width="100%" />
-                    </span>
+        <div className="flex items-center justify-center min-h-screen bg-gray-200">
+            <div className="w-full max-w-md bg-white shadow-md rounded-lg p-8 border border-gray-300">
+                <div className="mb-4 text-center">
+                    <Logo width="120px" />
                 </div>
-                <h2 className="text-center text-2xl font-bold leading-tight">
+                <h2 className="text-2xl font-semibold text-gray-700 mb-4 text-center">
                     Sign in to your account
                 </h2>
-                <p className="mt-2 text-center text-base text-black/60">
-                    Don&apos;t have any account?&nbsp;
+                <p className="text-gray-600 text-center mb-6">
+                    Don’t have an account?{' '}
                     <Link
                         to="/signup"
-                        className="font-medium text-primary transition-all duration-200 hover:underline"
+                        className="text-blue-500 hover:underline"
                     >
                         Sign Up
                     </Link>
                 </p>
                 {error && (
-                    <p className="text-red-600 mt-8 text-center">{error}</p>
+                    <p className="text-red-600 mb-4 text-center">{error}</p>
                 )}
-                <form onSubmit={handleSubmit(login)} className="mt-8">
-                    <div className="space-y-5">
+                <form onSubmit={handleSubmit(login)} className="space-y-6">
+                    <div>
                         <Input
-                            label="Email: "
+                            label="Email"
                             placeholder="Enter your email"
                             type="email"
                             {...register('email', {
-                                required: true,
+                                required: 'Email is required',
                                 validate: {
-                                    matchPatern: (value) =>
+                                    matchPattern: (value) =>
                                         /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
                                             value
-                                        ) ||
-                                        'Email address must be a valid address',
+                                        ) || 'Invalid email address',
                                 },
                             })}
                         />
+                    </div>
+                    <div>
                         <Input
-                            label="Password: "
+                            label="Password"
                             type="password"
                             placeholder="Enter your password"
                             {...register('password', {
-                                required: true,
+                                required: 'Password is required',
                             })}
                         />
-                        <Button type="submit" className="w-full">
-                            Sign in
-                        </Button>
                     </div>
+                    <Button
+                        type="submit"
+                        className="w-full bg-blue-500 text-white hover:bg-blue-600"
+                    >
+                        Sign In
+                    </Button>
                 </form>
             </div>
         </div>
