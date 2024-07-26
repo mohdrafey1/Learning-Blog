@@ -38,15 +38,18 @@ export default function MyPosts() {
                 <h1 className="text-3xl font-bold mb-6 text-center">
                     My Posts
                 </h1>
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap -mx-2">
                     {posts.length === 0 ? (
-                        <p>
-                            You have no posts yet or Refresh the page to see
-                            your post
+                        <p className="text-center w-full">
+                            You have no posts yet or refresh the page to see
+                            your posts.
                         </p>
                     ) : (
                         posts.map((post) => (
-                            <div key={post.$id} className="p-2 w-1/4">
+                            <div
+                                key={post.$id}
+                                className="p-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
+                            >
                                 <PostCard {...post} />
                             </div>
                         ))
