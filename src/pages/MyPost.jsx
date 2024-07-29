@@ -41,8 +41,7 @@ export default function MyPosts() {
                 <div className="flex flex-wrap -mx-2">
                     {posts.length === 0 ? (
                         <p className="text-center w-full">
-                            You have no posts yet or refresh the page to see
-                            your posts.
+                            You have no posts yet.
                         </p>
                     ) : (
                         posts.map((post) => (

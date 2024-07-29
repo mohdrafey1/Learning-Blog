@@ -1,5 +1,10 @@
 import conf from '../conf/conf.js';
 import { Client, Account, ID } from 'appwrite';
+import store from '../store/store.js';
+import {
+    login as loginAction,
+    logout as logoutAction,
+} from '../store/authSlice';
 
 export class AuthService {
     client = new Client();
@@ -21,7 +26,6 @@ export class AuthService {
                 name
             );
             if (userAccount) {
-                // call another method
                 return this.login({ email, password });
             } else {
                 return userAccount;
@@ -33,7 +37,13 @@ export class AuthService {
 
     async login({ email, password }) {
         try {
-            return await this.account.createEmailSession(email, password);
+            const session = await this.account.createEmailSession(
+                email,
+                password
+            );
+            const user = await this.getCurrentUser();
+            store.dispatch(loginAction({ userData: user }));
+            return session;
         } catch (error) {
             throw error;
         }
@@ -43,7 +53,7 @@ export class AuthService {
         try {
             return await this.account.get();
         } catch (error) {
-            console.log('Appwrite serive :: getCurrentUser :: error', error);
+            console.log('Appwrite service :: getCurrentUser :: error', error);
         }
 
         return null;
@@ -52,8 +62,9 @@ export class AuthService {
     async logout() {
         try {
             await this.account.deleteSessions();
+            store.dispatch(logoutAction());
         } catch (error) {
-            console.log('Appwrite serive :: logout :: error', error);
+            console.log('Appwrite service :: logout :: error', error);
         }
     }
 }
