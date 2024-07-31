@@ -15,4 +15,3 @@ This project is a full-stack web application built with React for the frontend a
 - **Frontend**: React, Redux, Tailwind CSS, React Hook Form, TinyMCE
 - **Backend**: Appwrite
 - **Deployment**: Vercel
-
